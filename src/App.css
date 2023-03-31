@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'OperatorMonoLig';
+    src:  url('../src/assets/fonts/OperatorMonoLig-Book.otf')
+}
+
 body{
     min-height: 100vh;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url("../src/assets/background.jpg");
@@ -5,7 +10,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     color: #f5f5f5;
-    font-family: montserrat,"Work Sans";
+    font-family: OperatorMonoLig, serif
 }
 
 .app_container{
@@ -60,7 +65,7 @@ body{
     border-radius: 25px;
     padding-left: 15px;
     font-size: 25px;
-    font-family: "Adelle Sans Devanagari";
+    font-family: OperatorMonoLig, serif
 }
 
 .left_container, .right_container{
