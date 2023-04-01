@@ -1,6 +1,5 @@
 import { useState } from "react";
-import moment from "moment/moment.js";
-import useFormattedTime from "../Hooks/useFormattedTime.js";
+
 import useFetchWeather from "../Hooks/useFetchWeather.js";
 import ShowWeatherResults from "../components/ShowWeatherResults/ShowWeatherResults.jsx";
 import ShowWeeklyWeatherResults from "../components/ShowWeeklyWeatherResults/ShowWeeklyWeatherResults.jsx";
@@ -11,11 +10,10 @@ import Loader from "../components/Loader/Loader.jsx";
 const Home = () => {
   //Setting initial states of values.
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [currentTime, setCurrentTime] = useState(moment());
+  // const [currentTime, setCurrentTime] = useState(moment());
   const [citySearch, setCitySearch] = useState("London");
 
   //Using custom hooks and util functions.
-  const { formattedTime } = useFormattedTime(currentTime, setCurrentTime);
   const { formattedDate } = formatDate(currentDate);
 
   const {
@@ -54,7 +52,6 @@ const Home = () => {
                   item={item}
                   name={name}
                   formattedDate={formattedDate}
-                  formattedTime={formattedTime}
                   main={main}
                   citySearch={citySearch}
                   setCitySearch={setCitySearch}
@@ -70,6 +67,7 @@ const Home = () => {
             return (
               <div className={"weeklyWeatherResults__map"}>
                 {items?.list.map((item, index) => {
+                  console.log("items in LIST data map: ", items);
                   return <ShowWeeklyWeatherResults index={index} item={item} />;
                 })}
               </div>

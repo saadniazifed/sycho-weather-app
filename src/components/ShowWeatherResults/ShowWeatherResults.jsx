@@ -7,13 +7,15 @@ import {
 import { FaSearchLocation } from "react-icons/fa";
 import ShowWeatherDetails from "./ShowWeatherDetails.jsx";
 import capitalizedWords from "../../utils/capitalizeWords.js";
+import { useState } from "react";
+import moment from "moment";
+import useFormattedTime from "../../Hooks/useFormattedTime.js";
 
 const ShowWeatherResults = (props) => {
   const {
     item,
     name,
     formattedDate,
-    formattedTime,
     main,
     citySearch,
     setCitySearch,
@@ -21,6 +23,10 @@ const ShowWeatherResults = (props) => {
     index,
     searchForCity,
   } = props;
+
+  const [currentTime, setCurrentTime] = useState(moment());
+  const { formattedTime } = useFormattedTime(currentTime, setCurrentTime);
+
   //Using custom hooks.
   const { joinedWord } = capitalizedWords(item?.description);
 
