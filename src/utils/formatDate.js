@@ -1,4 +1,4 @@
-const useFormattedDate = (currentDate) => {
+const formatDate = (currentDate) => {
   const formattedDate = currentDate
     .toLocaleString("en-US", {
       weekday: "long",
@@ -10,4 +10,4 @@ const useFormattedDate = (currentDate) => {
   return { formattedDate };
 };
 
-export default useFormattedDate;
+export default formatDate;

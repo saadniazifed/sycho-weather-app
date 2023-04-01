@@ -1,6 +1,11 @@
 @font-face {
-    font-family: 'OperatorMonoLig';
-    src:  url('../src/assets/fonts/OperatorMonoLig-Book.otf')
+    font-family: 'Inconsolata';
+    src:  url('../src/assets/fonts/Inconsolata-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'MavenPro';
+    src:  url('../src/assets/fonts/MavenPro-Regular.ttf')
 }
 
 body{
@@ -10,7 +15,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     color: #f5f5f5;
-    font-family: OperatorMonoLig, serif
+    font-family: Inconsolata, serif
 }
 
 .app_container{
@@ -19,6 +24,7 @@ body{
     justify-content: space-evenly;
     flex: 1;
     min-height: 100vh;
+
 }
 
 .top_container{
@@ -59,13 +65,23 @@ body{
 }
 
 .weather-info__input{
-    border-width: 0;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 25px;
+    max-width: 600px;
+    height: 56px;
+    border-radius: 15px;
+    position: relative;
+    background-color: rgba(255,255,255,0.3);
+    transition: 0.3s all;
+    color: white;
+    outline: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-left: 15px;
     font-size: 25px;
-    font-family: OperatorMonoLig, serif
+    font-family: Inconsolata, serif;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
 }
 
 .left_container, .right_container{
@@ -115,6 +131,7 @@ body{
     font-size: 2rem;
     font-weight: 500;
     display: inline-block;
+    font-family: MavenPro, sans-serif;
 }
 
 .weeklyWeatherResults__dailyTemperature{
@@ -132,4 +149,14 @@ body{
 .weeklyWeatherResults__info{
     font-size: 0.8rem;
     margin-left: 10px;
+}
+
+.faLocation{
+    cursor: pointer;
+}
+
+.loader__center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }

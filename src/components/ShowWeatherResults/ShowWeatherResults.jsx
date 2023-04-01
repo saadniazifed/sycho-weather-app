@@ -1,11 +1,12 @@
-import useCapitalizedWords from "../../customHooks/useCapitalizedWords.js";
 import {
   TiWeatherSunny,
   TiWeatherWindyCloudy,
   TiWeatherDownpour,
   TiWeatherWindy,
 } from "react-icons/ti";
+import { FaSearchLocation } from "react-icons/fa";
 import ShowWeatherDetails from "./ShowWeatherDetails.jsx";
+import capitalizedWords from "../../utils/capitalizeWords.js";
 
 const ShowWeatherResults = (props) => {
   const {
@@ -18,9 +19,10 @@ const ShowWeatherResults = (props) => {
     setCitySearch,
     wind,
     index,
+    searchForCity,
   } = props;
   //Using custom hooks.
-  const { joinedWord } = useCapitalizedWords(item?.description);
+  const { joinedWord } = capitalizedWords(item?.description);
 
   return (
     <div className={"top_container"} key={index}>
@@ -31,12 +33,25 @@ const ShowWeatherResults = (props) => {
         <span className={"weather-info__date_and_time"}>{formattedTime}</span>
         <span className={"weather-info__temperature"}>{main.temp} °C</span>
         <span className={"weather-info__weather-units"}>Display °F</span>
-        <input
-          value={citySearch}
-          onChange={(e) => setCitySearch(e.target.value)}
-          placeholder={"Search Location.."}
-          className={"weather-info__input"}
-        />
+        <div className={"displayFlex"}>
+          <input
+            value={citySearch}
+            onChange={(e) => setCitySearch(e.target.value)}
+            placeholder={"Search Location.."}
+            className={"weather-info__input"}
+          />
+
+          <button
+            onClick={() => searchForCity()}
+            style={{ backgroundColor: "transparent", border: "none" }}
+          >
+            <FaSearchLocation
+              color={"white"}
+              size={35}
+              className={"faLocation"}
+            />
+          </button>
+        </div>
       </div>
 
       <div className={"right_container"}>
