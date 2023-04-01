@@ -10,6 +10,16 @@ import capitalizedWords from "../../utils/capitalizeWords.js";
 import { useState } from "react";
 import moment from "moment";
 import useFormattedTime from "../../Hooks/useFormattedTime.js";
+import {
+  WiCloudy,
+  WiDayRain,
+  WiNightAltSnowThunderstorm,
+  WiSmoke,
+  WiSnowWind,
+  WiSunrise,
+  WiThunderstorm,
+} from "react-icons/wi";
+import CityInput from "../CityInput/CityInput.jsx";
 
 const ShowWeatherResults = (props) => {
   const {
@@ -30,34 +40,41 @@ const ShowWeatherResults = (props) => {
   //Using custom hooks.
   const { joinedWord } = capitalizedWords(item?.description);
 
+  const getIcon = (item) => {
+    console.log("item: ", item?.main);
+    return item?.main === "Rain" ? (
+      <WiDayRain size={90} />
+    ) : item?.main === "Clear" ? (
+      <WiSunrise size={90} />
+    ) : item?.main === "Snow" ? (
+      <WiSnowWind size={90} />
+    ) : item?.main === "Drizzle" ? (
+      <WiNightAltSnowThunderstorm size={90} />
+    ) : item?.main === "Thunderstorm" ? (
+      <WiThunderstorm size={90} />
+    ) : item?.main === "Clouds" ? (
+      <WiCloudy size={150} />
+    ) : item?.main === "Smoke" ? (
+      <WiSmoke size={150} />
+    ) : null;
+  };
+
   return (
     <div className={"top_container"} key={index}>
       <div className={"left_container"}>
-        <span className={"weather-info__description"}>{item?.main}</span>
+        <span className={"weather-info__description"}>
+          {item?.main.toUpperCase()}
+        </span>
+        {getIcon(item)}
+        <CityInput
+          citySearch={citySearch}
+          setCitySearch={setCitySearch}
+          searchForCity={searchForCity}
+        />
         <span className={"weather-info__city"}>{name}</span>
         <span className={"weather-info__date_and_time"}>{formattedDate}</span>
         <span className={"weather-info__date_and_time"}>{formattedTime}</span>
         <span className={"weather-info__temperature"}>{main.temp} °C</span>
-        <span className={"weather-info__weather-units"}>Display °F</span>
-        <div className={"displayFlex"}>
-          <input
-            value={citySearch}
-            onChange={(e) => setCitySearch(e.target.value)}
-            placeholder={"Search Location.."}
-            className={"weather-info__input"}
-          />
-
-          <button
-            onClick={() => searchForCity()}
-            style={{ backgroundColor: "transparent", border: "none" }}
-          >
-            <FaSearchLocation
-              color={"white"}
-              size={35}
-              className={"faLocation"}
-            />
-          </button>
-        </div>
       </div>
 
       <div className={"right_container"}>

@@ -37,12 +37,14 @@ body{
     font-size: 4rem;
     font-weight: 500;
     line-height: 1;
+    font-weight: bold;
 }
 
 .weather-info__city{
     margin-bottom: 1rem;
     font-size: 1.8rem;
     font-weight: 500;
+    margin-top: 1rem;
 }
 
 .weather-info__date_and_time{
