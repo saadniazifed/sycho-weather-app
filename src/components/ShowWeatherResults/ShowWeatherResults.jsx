@@ -4,22 +4,13 @@ import {
   TiWeatherDownpour,
   TiWeatherWindy,
 } from "react-icons/ti";
-import { FaSearchLocation } from "react-icons/fa";
 import ShowWeatherDetails from "./ShowWeatherDetails.jsx";
 import capitalizedWords from "../../utils/capitalizeWords.js";
 import { useState } from "react";
 import moment from "moment";
 import useFormattedTime from "../../Hooks/useFormattedTime.js";
-import {
-  WiCloudy,
-  WiDayRain,
-  WiNightAltSnowThunderstorm,
-  WiSmoke,
-  WiSnowWind,
-  WiSunrise,
-  WiThunderstorm,
-} from "react-icons/wi";
 import CityInput from "../CityInput/CityInput.jsx";
+import GetIcon from "../GetIcon/GetIcon.jsx";
 
 const ShowWeatherResults = (props) => {
   const {
@@ -32,6 +23,7 @@ const ShowWeatherResults = (props) => {
     wind,
     index,
     searchForCity,
+    fetchWeeklyData,
   } = props;
 
   const [currentTime, setCurrentTime] = useState(moment());
@@ -40,36 +32,18 @@ const ShowWeatherResults = (props) => {
   //Using custom hooks.
   const { joinedWord } = capitalizedWords(item?.description);
 
-  const getIcon = (item) => {
-    console.log("item: ", item?.main);
-    return item?.main === "Rain" ? (
-      <WiDayRain size={90} />
-    ) : item?.main === "Clear" ? (
-      <WiSunrise size={90} />
-    ) : item?.main === "Snow" ? (
-      <WiSnowWind size={90} />
-    ) : item?.main === "Drizzle" ? (
-      <WiNightAltSnowThunderstorm size={90} />
-    ) : item?.main === "Thunderstorm" ? (
-      <WiThunderstorm size={90} />
-    ) : item?.main === "Clouds" ? (
-      <WiCloudy size={150} />
-    ) : item?.main === "Smoke" ? (
-      <WiSmoke size={150} />
-    ) : null;
-  };
-
   return (
     <div className={"top_container"} key={index}>
       <div className={"left_container"}>
         <span className={"weather-info__description"}>
           {item?.main.toUpperCase()}
         </span>
-        {getIcon(item)}
+        <GetIcon item={item} />
         <CityInput
           citySearch={citySearch}
           setCitySearch={setCitySearch}
           searchForCity={searchForCity}
+          fetchWeeklyData={fetchWeeklyData}
         />
         <span className={"weather-info__city"}>{name}</span>
         <span className={"weather-info__date_and_time"}>{formattedDate}</span>

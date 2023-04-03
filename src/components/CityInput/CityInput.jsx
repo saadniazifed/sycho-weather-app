@@ -1,7 +1,13 @@
 import { FaSearchLocation } from "react-icons/fa";
 
 const CityInput = (props) => {
-  const { citySearch, setCitySearch, searchForCity } = props;
+  const { citySearch, setCitySearch, searchForCity, fetchWeeklyData } = props;
+
+  const handleButtonClick = () => {
+    searchForCity();
+    fetchWeeklyData();
+  };
+
   return (
     <div className={"displayFlex"}>
       <input
@@ -12,7 +18,7 @@ const CityInput = (props) => {
       />
 
       <button
-        onClick={() => searchForCity()}
+        onClick={handleButtonClick}
         style={{ backgroundColor: "transparent", border: "none" }}
       >
         <FaSearchLocation color={"white"} size={35} className={"faLocation"} />
